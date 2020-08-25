@@ -31,7 +31,7 @@ void pira(int n){
             term--;
         }
         else{            
-            
+
             star=(2*(n-i-1))+1;
 
             for(j=0;j<=term;j++) cout<<'-';
@@ -46,7 +46,7 @@ void pira(int n){
 
 int main(void){
 
-    pira(9);
+    pira(13);
 
     return 0;
 }

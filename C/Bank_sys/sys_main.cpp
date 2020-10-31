@@ -13,7 +13,7 @@ void Deposit(void);
 void Withdrow(void);
 void Acc_info(void);
 
-int ID_check(int id);
+int ID_check(int* id);
 
 typedef struct{
     int user_id;
@@ -52,7 +52,7 @@ void Make_account(void){
     account_arr[acc_count].balance=money;
     strcpy(account_arr[acc_count].user_name,name);
 
-    cout<<"Your accout open"<<endl<<"your ID:"<<account_arr[acc_count].user_id<<endl
+    cout<<"Your accout open"<<endl<<"Your ID:"<<account_arr[acc_count].user_id<<endl
     <<"Name:"<<account_arr[acc_count].user_name<<endl<<"Balance:"<<account_arr[acc_count].balance<<endl;
     cout<<endl;
     acc_count++;
@@ -65,27 +65,25 @@ void Deposit(void){
 
     cout<<"[Deposit]"<<endl;
 
-    while(1){
-
-        cout<<"Enter your ID:";
-        cin>>id;
-
-        if(ID_check(id)==0) 
-        break;
-        else
-        { 
-            cout<<"Check your ID"<<endl;
-        }
-    }
-
-    cout<<"Welcome "<<account_arr[id].user_name<<endl
-    <<"Enter amount of deposit:";
+    ID_check(&id);
 
     while(1)
     {
+        cout<<"Enter amount of deposit:";
         cin>>money;
 
-        if(money>0)
+        if(!cin)
+        {
+            cout<<endl;
+            cout<<"Please check input data"<<endl;
+            cin.clear();
+            fseek(stdin,0,SEEK_END);    //while(cin.get()!='\n')
+        }
+        else if(money<0)
+        {
+            cout<<"Check input money"<<endl;    
+        }
+        else
         {
             cout<<endl;
             cout<<"Default your balance:"<<account_arr[id].balance<<endl;
@@ -94,23 +92,89 @@ void Deposit(void){
             cout<<endl;
             break;
         }
+    }
+}
+
+void Withdrow(void){
+
+    int money;
+    int id;
+    cout<<"[Withdrow]"<<endl;
+
+    ID_check(&id);
+
+    while(1)
+    {
+        cout<<"Enter amount of withdraw:";
+        cin>>money;
+
+        if(!cin)
+        {
+            cout<<endl;
+            cout<<"Please check input data"<<endl;
+            cin.clear();
+            fseek(stdin,0,SEEK_END);    //while(cin.get()!='\n')
+        }
+        else if(money<0)
+        {
+            cout<<"Check input money"<<endl;    
+        }
+        else if(account_arr[id].balance<money)
+        {
+            cout<<"Not enough your balance"<<endl;
+        }
         else
         {
             cout<<endl;
-            cout<<"Please check input data"<<endl
-            <<"Enter amount of deposit:";
+            cout<<"Default your balance:"<<account_arr[id].balance<<endl;
+            account_arr[id].balance-=money;
+            cout<<"Now balance:"<<account_arr[id].balance<<endl;
+            cout<<endl;
+            break;
         }
     }
 }
 
-int ID_check(int id){
+void Acc_info(void){
 
-    for(int i=0;i<ACC_NUM;i++)
-    {
-        if(account_arr[i].user_id==id)
-            return 0;
+    int id;
+
+    ID_check(&id);
+
+    cout << endl;
+    cout << "Your ID:" << account_arr[id].user_id << endl <<
+    "Your Name:" << account_arr[id].user_name << endl <<
+    "Now balance:" << account_arr[id].balance << endl;
+    cout << endl;
+}
+
+int ID_check(int* id){
+
+    while(1){
+
+        cout<<"Enter your ID:";
+        cin>>*id;
+
+        if (cin.fail())
+        {
+            cout<<"Check your input data"<<endl;
+            cin.clear();
+            cin.ignore(256,'\n');
+        }
+        else
+        { 
+            for(int i=0;i<ACC_NUM;i++)
+            {
+                if(account_arr[i].user_id==*id)
+                {
+                    cout<<endl;
+                    cout<<"Welcome "<<account_arr[*id].user_name<<endl;
+                    return 0;
+                }
+            }
+            cout<<"Not exist ID"<<endl;
+        }
     }
-    return 1;
 }
 
 int main(void){
@@ -132,12 +196,12 @@ int main(void){
             case DEPOSIT:
                 Deposit();
                 break;
-           /* case WITHDROW:
+            case WITHDROW:
                 Withdrow();
                 break;
             case INQUIRE:
                 Acc_info();
-                break;*/
+                break;
             case EXIT:
                 return 0;
             default:

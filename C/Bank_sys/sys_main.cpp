@@ -13,15 +13,63 @@ void Deposit(void);
 void Withdrow(void);
 void Acc_info(void);
 
-int ID_check(int* id);
+void ID_check(int* id);
 
-typedef struct{
+/*typedef struct{
     int user_id;
     int balance;
     char user_name[NAME_LEN];
-} Account;
+} Account;*/
 
-Account account_arr[ACC_NUM];
+class Account
+{
+private:
+    int user_id;
+    int balance;
+    char *user_name;
+
+public:
+    Account(int id,int money,char *name):user_id(id),balance(money)
+    {
+        user_name=new char[strlen(name)+1];
+        strcpy(user_name,name);
+    }
+
+    int Get_ID(void)    
+    {
+        return user_id;
+    }
+    char* Get_name(void)
+    {
+        return user_name;
+    }
+    int Get_balance(void)
+    {
+        return balance;
+    }
+
+    void Inputmoney(int money)
+    {
+        balance+=money;
+    }
+    void Outputmoney(int money)
+    {
+        balance-=money;
+    }
+
+    void Showinfo()
+    {
+        cout<<"ID:"<<user_id<<endl
+        <<"Name:"<<user_name<<endl
+        <<"Balnace:"<<balance<<endl<<endl;
+    }
+    ~Account()
+    {
+        delete []user_name;
+    }
+};
+
+Account *account_arr[ACC_NUM];
 int acc_count=0;
 
 enum {MAKE=1, DEPOSIT, WITHDROW, INQUIRE, EXIT};
@@ -48,14 +96,17 @@ void Make_account(void){
     cin>>money;
     cout<<endl;
 
-    account_arr[acc_count].user_id=acc_count;
+    /*account_arr[acc_count].user_id=acc_count;
     account_arr[acc_count].balance=money;
     strcpy(account_arr[acc_count].user_name,name);
 
     cout<<"Your accout open"<<endl<<"Your ID:"<<account_arr[acc_count].user_id<<endl
     <<"Name:"<<account_arr[acc_count].user_name<<endl<<"Balance:"<<account_arr[acc_count].balance<<endl;
     cout<<endl;
-    acc_count++;
+    acc_count++;*/
+
+    account_arr[acc_count]=new Account(acc_count,money,name);
+    account_arr[acc_count++]->Showinfo();
 }
 
 void Deposit(void){
@@ -85,11 +136,14 @@ void Deposit(void){
         }
         else
         {
-            cout<<endl;
+            /*cout<<endl;
             cout<<"Default your balance:"<<account_arr[id].balance<<endl;
             account_arr[id].balance+=money;
             cout<<"Now balance:"<<account_arr[id].balance<<endl;
-            cout<<endl;
+            cout<<endl;*/
+            account_arr[id]->Inputmoney(money);
+            account_arr[id]->Showinfo();
+            
             break;
         }
     }
@@ -110,7 +164,6 @@ void Withdrow(void){
 
         if(!cin)
         {
-            cout<<endl;
             cout<<"Please check input data"<<endl;
             cin.clear();
             fseek(stdin,0,SEEK_END);    //while(cin.get()!='\n')
@@ -119,17 +172,16 @@ void Withdrow(void){
         {
             cout<<"Check input money"<<endl;    
         }
-        else if(account_arr[id].balance<money)
+        else if(account_arr[id]->Get_balance()<money)
         {
             cout<<"Not enough your balance"<<endl;
         }
         else
         {
-            cout<<endl;
-            cout<<"Default your balance:"<<account_arr[id].balance<<endl;
-            account_arr[id].balance-=money;
-            cout<<"Now balance:"<<account_arr[id].balance<<endl;
-            cout<<endl;
+            cout<<"Default your balance:"<<account_arr[id]->Get_balance()<<endl;
+            account_arr[id]->Outputmoney(money);
+            cout<<"Now balance:"<<account_arr[id]->Get_balance()<<endl;
+            cout<<endl<<endl;
             break;
         }
     }
@@ -140,15 +192,10 @@ void Acc_info(void){
     int id;
 
     ID_check(&id);
-
-    cout << endl;
-    cout << "Your ID:" << account_arr[id].user_id << endl <<
-    "Your Name:" << account_arr[id].user_name << endl <<
-    "Now balance:" << account_arr[id].balance << endl;
-    cout << endl;
+    account_arr[id]->Showinfo();
 }
 
-int ID_check(int* id){
+void ID_check(int* id){
 
     while(1){
 
@@ -163,13 +210,11 @@ int ID_check(int* id){
         }
         else
         { 
-            for(int i=0;i<ACC_NUM;i++)
+            for(int i=0;i<acc_count;i++)
             {
-                if(account_arr[i].user_id==*id)
+                if(account_arr[i]->Get_ID()==*id)
                 {
-                    cout<<endl;
-                    cout<<"Welcome "<<account_arr[*id].user_name<<endl;
-                    return 0;
+                    return;
                 }
             }
             cout<<"Not exist ID"<<endl;

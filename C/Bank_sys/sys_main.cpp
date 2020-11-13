@@ -35,6 +35,12 @@ public:
         strcpy(user_name,name);
     }
 
+    Account(const Account &ref):user_id(ref.user_id),balance(ref.balance)
+    {
+        user_name=new char[strlen(ref.user_name)+1];
+        strcpy(user_name,ref.user_name);
+    }
+
     int Get_ID(void)    
     {
         return user_id;

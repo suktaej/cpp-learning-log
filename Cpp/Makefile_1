@@ -1,0 +1,18 @@
+CC = g++
+CFLAGS = -W -Wall
+TARGET = hello_exe
+
+$(TARGET): memo.o cal.o hello.o
+	$(CC) $(CFLAGS) -o $(TARGET) memo.o cal.o hello.o
+
+memo.o: memo.cpp
+	$(CC) $(CFLAGS) -c -o memo.o memo.cpp
+
+cal.o: cal.cpp
+	$(CC) $(CFLAGS) -c -o cal.o cal.cpp
+
+hello.o: hello.cpp
+	$(CC) $(CFLAGS) -c -o hello.o hello.cpp
+
+clean:
+	rm *.o hello_exe

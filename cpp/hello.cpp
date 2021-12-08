@@ -1,12 +1,16 @@
-#include"helloh.h"
+#include<iostream>
 
 int main(void)
 {
-	memo();
-	cal();
+	//memo();
+	//cal();
 
 	std::cout<<"Hello world!";
 
 	return 0;
 }
 
+int fun_01(void){
+
+
+}

@@ -3,9 +3,16 @@
 void A_Fun(int &rPara);
 void B_Fun(int *pPara);
 void C_Fun(int &a, int &b);
+void Print_Fun(void);
 
 int main(void){
 
+	Print_Fun();
+	return 0;
+}
+
+void Print_Fun(void){
+	
 	int *ninit1 = new int;
 	int *ninit2 = new int(10);
 	int sinit1(15);
@@ -38,9 +45,8 @@ int main(void){
 
 	delete ninit1;
 	delete ninit2;
-	
-	return 0;
 }
+
 
 void A_Fun(int &rPara){
 

@@ -1,11 +1,12 @@
 #include"009_point.h"
 #include<iostream>
 
-Point::Point(const int &x,const int &y)
+/*Point::Point(const int &x,const int &y)
 {
 	xpos=x;
 	ypos=y;
 }
+*/
 
 int Point::GetX(void) const {return xpos;}
 int Point::GetY(void) const {return ypos;}

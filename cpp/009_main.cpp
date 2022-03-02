@@ -10,6 +10,7 @@ int main(void)
 	rec.Show();
 	prec->Show();
 
+	delete prec;
 	return 0;
 }
 

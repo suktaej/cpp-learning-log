@@ -5,11 +5,12 @@ class Point{
 	private:
 		int xpos,ypos;
 	public:
-		Point(const int &x,const int &y);
+		Point(const int &x,const int &y):xpos(x),ypos(y) { }
 		int GetX() const;
 		int GetY() const;
 		bool SetX(int x);
 		bool SetY(int y);
+		~Point() { }
 };
 
 #endif

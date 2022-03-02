@@ -2,20 +2,24 @@
 
 class FruitSeller{
 	private:
-		int apple_price;
+		const int apple_price; //initializer can use constant 
 		int apple_num;
 		int seller_money;
 
 	public:
 		//void Init(int price,int num,int money);
-		FruitSeller(int price,int num,int money)		
-		{
+		FruitSeller(int price,int num,int money):apple_price(price),apple_num(num),seller_money(money) {}
+/*		{
 			apple_price=price;
 			apple_num=num;
 			seller_money=money;
-		}
+		}*/
 		int SaleApples(int money);
 		void Show() const;
+		~FruitSeller()
+		{
+
+		}
 };
 
 class FruitBuyer{
@@ -25,14 +29,18 @@ class FruitBuyer{
 
 	public:
 		//void Init(int money);
-		FruitBuyer(int money)
-		{
+		FruitBuyer(int money):buyer_money(money),apple_num(0) {}
+/*		{
 			buyer_money=money;
 			apple_num=0;
-		}
+		}*/
 		void BuyApples(FruitSeller &seller,int money);
 		void BuyApples(FruitSeller *(&seller),int money);
 		void Show() const;
+		~FruitBuyer()
+		{
+
+		}
 };
 
 /*void FruitSeller::Init(int price,int num,int money)

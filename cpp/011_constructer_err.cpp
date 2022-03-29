@@ -22,11 +22,16 @@ class Person{
 			age=0;
 			std::cout<<"called Person()"<<std::endl;
 		}
-		
+
+		Person(const Person& copy):age(copy.age)
+		{
+			name=new char[strlen(copy.name)+1];
+			strcpy(name,copy.name);
+		}
+
 		void SetPerson(char *input_name,int input_num)
 		{
 			name=input_name;
-//			strcpy(name,input_name);
 			age=input_num;
 		}
 
@@ -46,23 +51,26 @@ class Person{
 int main(void)
 {
 	Person parr[3];
-	char *pstr;
 
-	int age=99;
+	char *pstr;
 	int len;
 
-	char n1[20]="Kimkim";
-	char n2[20]="Leelee";
-	char n3[20]="Parkpark";
+	char n1[10]="Kim";
+	char n2[10]="Lee";
+	char n3[10]="Park";
 
 	len=strlen(n1)+1;
 	pstr=new char[len];
 	strcpy(pstr,n1);
 	
-	parr[0].SetPerson(pstr,age);
-	parr[1].SetPerson(n2,age);
-	parr[2].SetPerson(n3,age);
-
+	parr[0].SetPerson(pstr,10);
+	parr[1].SetPerson(pstr,20);
+	parr[2].SetPerson(pstr,30);
+/*
+	parr[0].SetPerson(n1,10);
+	parr[1].SetPerson(n2,20);
+	parr[2].SetPerson(n3,30);
+*/
 	for(int i=0;i<3;i++) {parr[i].ShowPerson();}
 
 	return 0;

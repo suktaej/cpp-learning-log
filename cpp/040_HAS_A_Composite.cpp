@@ -12,6 +12,10 @@ class Gun
 			std::cout<<"bang"<<std::endl;
 			bullet--;
 		}
+		int Empty_bullet()
+		{
+			return bullet;
+		}
 };
 
 class Police
@@ -27,6 +31,20 @@ class Police
 			else
 				pistol=NULL;
 		}
+		Police(const Police &ref):handcuffs(ref.handcuffs)
+		{
+			pistol=new Gun(*(ref.pistol));
+		}
+		Police& operator=(const Police &ref)
+		{
+			if(pistol!=NULL)
+				delete pistol;
+
+			handcuffs=ref.handcuffs;
+			pistol=new Gun(*(ref.pistol));
+
+			return *this;
+		}
 
 		void Puthandcuff()
 		{
@@ -36,20 +54,50 @@ class Police
 
 		void Shut()
 		{
-			if(pistol==NULL)
+			if(pistol==NULL||pistol->Empty_bullet()<=0)
 				std::cout<<"hut bang"<<std::endl;
 			else
+			{
+				std::cout<<pistol->Empty_bullet();
 				pistol->Shut();
+			}
+		}
+
+		~Police()
+		{
+			if(pistol!=NULL)
+				delete pistol;
 		}
 };
 
 int main(void)
 {
-	Police pman1(5,3);
-	pman1.Shut();
-	pman1.Puthandcuff();
+//	Police pman1(5,3);
+//	pman1.Shut();
+//	pman1.Puthandcuff();
+//
+	Police pman2(10,3);
+	pman2.Shut();
+	pman2.Puthandcuff();
 
-	Police pman2(0,3);
+	std::cout<<"-----"<<std::endl;
+
+	Police pman3(2,1);
+	Police pman4=pman3;
+
+	pman3.Shut();
+	pman3.Shut();
+	pman3.Shut();
+
+	std::cout<<"-----"<<std::endl;
+
+	pman4.Puthandcuff();
+	pman4.Shut();
+	pman4.Shut();
+	
+	std::cout<<"-----"<<std::endl;
+
+	pman2=pman3;
 	pman2.Shut();
 	pman2.Puthandcuff();
 

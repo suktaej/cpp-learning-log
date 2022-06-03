@@ -10,10 +10,8 @@ void ShowMenu(void);
 void MakeAccount(void);
 void DepositMoney(void);
 void WithdrawMoney(void);
-void ShowInfo(void);
 void ShowAll(void);
 
-int DigitCheck(char*);
 
 enum {MAKE=1, DEPOSIT, WITHDRAW, INQUIRE, EXIT};
 
@@ -55,25 +53,25 @@ int Accnum=0;
 int main(void)
 {
 	int choice;
-	//char* choice_str=new char;
-	//choice_str=malloc(sizeof(char));
 
 	while(1)
 	{
 		ShowMenu();
-		std::cout<<"Please choose number>";
-		std::cin>>choice;
-/*		while(getchar()!='\n'){}
-
-		if(DigitCheck(choice_str))
-			choice=strtol(choice_str,NULL,10);
-		else
+		while(1)
 		{
-			printf("***Illegal Selection***\n");
-			continue;
+			std::cout<<"Please choose number>";
+			std::cin>>choice;
+
+			if(std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore(NAME_LEN,'\n');
+				std::cout<<"***Please Input The Number***"<<std::endl;
+			}
+			else
+				break;
 		}
-		printf("\n");
-*/
+
 		switch(choice)
 		{
 			case MAKE:
@@ -93,7 +91,7 @@ int main(void)
 					delete[] Accarr[i];
 				return 0;
 			default:
-				std::cout<<"***Illegal Selection***"<<std::endl;
+				std::cout<<"***Incorrect Number***"<<std::endl;
 		}
 	}
 	return 0;
@@ -116,12 +114,24 @@ void MakeAccount(void)
 
 	std::cout<<"[Make Account]"<<std::endl;
 	std::cout<<"Name>";std::cin>>name;
-	std::cout<<"Balance>";std::cin>>money;
+	while(1)
+	{
+		std::cout<<"Balance>";std::cin>>money;
+		if(std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(NAME_LEN,'\n');
+			std::cout<<"***Please Input The Number***"<<std::endl;
+		}
+		else
+		{
+			Accarr[Accnum]=new Account(Accnum,money,name);
+			Accarr[Accnum]->ShowInfo();
+			Accnum++;
+			break;
+		}
+	}
 	std::cout<<std::endl;
-
-	Accarr[Accnum]=new Account(Accnum,money,name);
-	Accarr[Accnum]->ShowInfo();
-	Accnum++;
 }
 
 void DepositMoney(void)
@@ -130,82 +140,100 @@ void DepositMoney(void)
 	int id;
 
 	std::cout<<"[Deposit Money]"<<std::endl;
-	std::cout<<"ID>";std::cin>>id;
-	std::cout<<"Money Amount>";std::cin>>money;
 
-	if(id<0||id>Accnum)
+	while(1){
+		while(1)
+		{
+			std::cout<<"ID>";std::cin>>id;
+
+			if(std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore(NAME_LEN,'\n');
+				std::cout<<"***Please Input The Number***"<<std::endl;
+			}
+			else
+				break;
+		}
+
+		if(id<0||id>Accnum)
+			std::cout<<"***Incorrect ID***"<<std::endl;
+		else
+			break;
+	}
+
+	while(1)
 	{
-		std::cout<<"***Incorrect ID***"<<std::endl;
-		return;
+		std::cout<<"Money Amount>";std::cin>>money;
+
+		if(std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(NAME_LEN,'\n');
+			std::cout<<"***Please Input The Number***"<<std::endl;
+		}
+		else
+			break;
 	}
 
 	Accarr[id]->Deposit(money);
 	std::cout<<"Deposit Complete"<<std::endl;
 	Accarr[id]->ShowInfo();
 }
+
 void WithdrawMoney(void)
 {
 	int id;
 	int money;
 
 	std::cout<<"[Withdrawal Money]"<<std::endl;
-	std::cout<<"ID>";std::cin>>id;
-	std::cout<<"Money Amount>";std::cin>>money;
+	
+	while(1){
+		while(1)
+		{
+			std::cout<<"ID>";std::cin>>id;
 
-	if(id<0||id>Accnum)
-	{
-		std::cout<<"***Incorrect ID***"<<std::endl;
-		return;
+			if(std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore(NAME_LEN,'\n');
+				std::cout<<"***Please Input The Number***"<<std::endl;
+			}
+			else
+				break;
+		}
+
+		if(id<0||id>Accnum)
+			std::cout<<"***Incorrect ID***"<<std::endl;
+		else
+			break;
 	}
-	
-	if(Accarr[id]->Withdraw(money)==0)
+
+	while(1)
 	{
-		std::cout<<"***A shortage of balance***"<<std::endl;
-		return;
+		std::cout<<"Money Amount>";std::cin>>money;
+
+		if(std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(NAME_LEN,'\n');
+			std::cout<<"***Please Input The Number***"<<std::endl;
+		}
+		else
+		{
+			if(Accarr[id]->Withdraw(money)==0)
+				std::cout<<"***A shortage of balance***"<<std::endl;
+			else
+				break;
+		}
 	}
-	
+
 	std::cout<<"Withdrawal Complete"<<std::endl;
 	Accarr[id]->ShowInfo();
 	return;
 }
-/*
-void ShowInfo(void)
-{
-	int id;
-
-	while(1)
-	{
-		printf("[INFO]\n");
-		printf("ID>");
-		scanf("%d",&id);
-		while(getchar()!='\n'){}
-
-		if(id<Accnum&&id>=0)
-		{
-			printf("ID:%d\n",Accarr[id].AccID);
-			printf("Name:%s\n",Accarr[id].Customer_Name);
-			printf("Balance:%d\n",Accarr[id].Balance);
-			return;
-		}
-		else
-			printf("Illegal ID\n");
-	}
-}
-*/
 void ShowAll(void)
 {
 	for(int i=0;i<Accnum;i++)
 		Accarr[i]->ShowInfo();
-}
-
-int DigitCheck(char* str)
-{
-	int i;
-
-	for(i=0;i<strlen(str);i++)
-	{
-		if(isdigit(str[i])==0)
-			return 0;
-	}
-	return 1;
 }

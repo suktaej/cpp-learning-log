@@ -12,6 +12,7 @@ void DepositMoney(void);
 void WithdrawMoney(void);
 void ShowAll(void);
 
+
 enum {MAKE=1, DEPOSIT, WITHDRAW, INQUIRE, EXIT};
 
 class Account
@@ -56,29 +57,16 @@ class Account
 		}
 };
 
-class AccountHandler
-{
-	private:
-		Account* Accarr[ACC_LEN];
-		int Accnum=0;
-	public:
-		AccountHandler();
-		void ShowMenu(void) const;
-		void MakeAccount(void);
-		void DepositMoney(void);
-		void WithdrawMoney(void);
-		void ShowAll(void) const;
-		~AccountHandler();
-};
+Account* Accarr[ACC_LEN];
+int Accnum=0;
 
 int main(void)
 {
-	AccountHandler manager;
 	int choice;
 
 	while(1)
 	{
-		manager.ShowMenu();
+		ShowMenu();
 		while(1)
 		{
 			std::cout<<"Please choose number>";
@@ -97,18 +85,20 @@ int main(void)
 		switch(choice)
 		{
 			case MAKE:
-				manager.MakeAccount();
+				MakeAccount();
 				break;
 			case DEPOSIT:
-				manager.DepositMoney();
+				DepositMoney();
 				break;
 			case WITHDRAW:
-				manager.WithdrawMoney();
+				WithdrawMoney();
 				break;
 			case INQUIRE:
-				manager.ShowAll();
+				ShowAll();
 				break;
 			case EXIT:
+				for(int i=0;i<Accnum;i++)
+					delete Accarr[i];
 				return 0;
 			default:
 				std::cout<<"***Incorrect Number***"<<std::endl;
@@ -117,7 +107,7 @@ int main(void)
 	return 0;
 }
 
-void AccountHandler::ShowMenu(void) const
+void ShowMenu(void)
 {
 	std::cout<<"=====Menu====="<<std::endl;
 	std::cout<<"1.Create Account"<<std::endl;
@@ -127,7 +117,7 @@ void AccountHandler::ShowMenu(void) const
 	std::cout<<"5.Exit"<<std::endl;
 }
 
-void AccountHandler::MakeAccount(void)
+void MakeAccount(void)
 {
 	int money;
 	char name[NAME_LEN];
@@ -154,7 +144,7 @@ void AccountHandler::MakeAccount(void)
 	std::cout<<std::endl;
 }
 
-void AccountHandler::DepositMoney(void)
+void DepositMoney(void)
 {
 	int money;
 	int id;
@@ -176,7 +166,7 @@ void AccountHandler::DepositMoney(void)
 				break;
 		}
 
-		if(id<0||id>=Accnum)
+		if(id<0||id>Accnum)
 			std::cout<<"***Incorrect ID***"<<std::endl;
 		else
 			break;
@@ -201,7 +191,7 @@ void AccountHandler::DepositMoney(void)
 	Accarr[id]->ShowInfo();
 }
 
-void AccountHandler::WithdrawMoney(void)
+void WithdrawMoney(void)
 {
 	int id;
 	int money;
@@ -223,7 +213,7 @@ void AccountHandler::WithdrawMoney(void)
 				break;
 		}
 
-		if(id<0||id>=Accnum)
+		if(id<0||id>Accnum)
 			std::cout<<"***Incorrect ID***"<<std::endl;
 		else
 			break;
@@ -252,15 +242,8 @@ void AccountHandler::WithdrawMoney(void)
 	Accarr[id]->ShowInfo();
 	return;
 }
-void AccountHandler::ShowAll(void) const
+void ShowAll(void)
 {
 	for(int i=0;i<Accnum;i++)
 		Accarr[i]->ShowInfo();
-}
-
-AccountHandler::AccountHandler():Accnum(0){}
-AccountHandler::~AccountHandler()
-{
-	for(int i=0;i<Accnum;i++)
-		delete Accarr[i];
 }

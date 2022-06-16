@@ -30,7 +30,7 @@ class BCIArray
 int main(void)
 {
 	BCIArray arr(4);
-	
+
 	for(int i=0;i<4;i++)
 		arr[i]=(i+1)*11;
 	for(int i=0;i<5;i++)

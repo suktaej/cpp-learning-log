@@ -24,3 +24,23 @@ void Date::ShowDate(void)
 {
 	std::cout<<year_<<"/"<<month_<<"/"<<day_<<std::endl;
 }
+
+int main(void)
+{
+	Date* dateRef = new Date();
+	int year,month,date;
+	int temp=0;
+
+	while(1)
+	{
+		int sel;
+		std::cin>>sel;
+
+		switch(sel)
+		{
+			case 1:
+				std::cout<<"input date:";
+				std::cin>>date;
+		}
+	}
+}

@@ -41,7 +41,8 @@ class BoundCheckInt2DArray
 	public:
 		BoundCheckInt2DArray(int col,int row):arrlen(col)
 		{
-			arr=new BoundCheckIntArrayPtr[col];
+//			arr=new BoundCheckIntArrayPtr[col];
+			arr =new BoundCheckIntArray*[col];
 			for(int i=0;i<col;i++)
 				arr[i]=new BoundCheckIntArray(row);
 		}

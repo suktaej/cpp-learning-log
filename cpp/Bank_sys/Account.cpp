@@ -1,17 +1,28 @@
 #include "BankingCommonDecl.h"
 #include "Account.h"
+#include "BankingException.h"
+#include <new>
 
 Account::Account(int id,int money,std::string name):AccID(id),Balance(money)
 {
 	Customer_Name=name;
 }
 
-void Account::Deposit(int money){Balance+=money;}
+void Account::Deposit(int money)
+{
+	if(money<0)
+		throw MinusException(money);
+
+	Balance+=money;
+}
 
 int Account::Withdraw(int money)
 {
 	if(Balance<money)
-		return 0;
+		throw MinusException(money);	//return 0;
+	
+	if(Balance<money)
+		throw InsuffException(Balance,money);
 
 	Balance-=money;
 	return money;

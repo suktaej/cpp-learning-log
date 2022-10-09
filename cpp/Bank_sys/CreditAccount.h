@@ -1,6 +1,7 @@
 #ifndef __CREDIT_ACCOUNT_H__
 #define __CREDIT_ACCOUNT_H__
 
+#include "BankingException.h"
 #include "NormalAccount.h"
 
 class CreditAccount:public NormalAccount
@@ -12,6 +13,9 @@ class CreditAccount:public NormalAccount
 			:NormalAccount(id,money,name,rate),specialRate(spec){}
 		virtual void Deposit(int money)
 		{
+			if(money<0)
+				throw MinusException(money);
+
 			NormalAccount::Deposit(money);
 			Account::Deposit(money*(specialRate/100.0));
 		}	

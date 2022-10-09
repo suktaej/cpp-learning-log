@@ -2,16 +2,20 @@
 #define __NORMAL_ACCOUNT_H__
 
 #include "Account.h"
+#include "BankingException.h"
 
 class NormalAccount:public Account
 {
 	protected:
 		int interRate;
 	public:
-		//NormalAccount(int id,int money,char* name,int rate):Account(id,money,name),interRate(rate){}
-		NormalAccount(int id,int money, std::string name, int rate):Account(id,money,name),interRate(rate){}
+		NormalAccount(int id,int money, std::string name, int rate)
+			:Account(id,money,name),interRate(rate){}
 		virtual void Deposit(int money)
 		{
+			if(money<0)
+				throw MinusException(money);
+
 			Account::Deposit(money);
 			Account::Deposit(money*(interRate/100.0));
 		}

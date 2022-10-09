@@ -121,7 +121,7 @@ void AccountHandler::MakeCreditAccount(void)
 				{
 					while(1)
 					{
-						std::cout<<"credit Level(1 to A\t2 to B\t3 to C)>";std::cin>>credit_lev;
+						std::cout<<"credit Level(1toA\t2toB\t3toC)>";std::cin>>credit_lev;
 
 						if(std::cin.fail())
 						{
@@ -164,7 +164,8 @@ void AccountHandler::DepositMoney(void)
 	int id;
 
 	std::cout<<"[Deposit Money]"<<std::endl;
-
+	std::cout<<"ID>";std::cin>>id;
+	
 	while(1)
 	{
 		std::cout<<"ID>";std::cin>>id;
@@ -184,7 +185,7 @@ void AccountHandler::DepositMoney(void)
 		}
 	}
 
-	while(1)
+	while(true)
 	{
 		std::cout<<"Money Amount>";std::cin>>money;
 

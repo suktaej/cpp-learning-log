@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<math.h>
 
-#define SWAP(x,y,t) ((t)=(x),(x)=(y),(y)=(x))
+#define SWAP(x,y,t) ((t)=(x),(x)=(y),(y)=(t))
 #define MAX_SIZE 101
 
 void selectionSort(int [],int);
@@ -55,10 +55,8 @@ void selectionSort(int list[], int n)
         for(j=i+1;j<n;j++)
         {
             if(list[j]<list[min])
-            { 
             min = j;
-            SWAP(list[i],list[min],temp);
-            }
+        SWAP(list[i],list[min],temp);
         }
     }
 }

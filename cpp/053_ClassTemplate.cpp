@@ -8,6 +8,7 @@ class Point
 	public:
 		Point(T x=0,T y=0);
 		void Show() const;
+		int i==190
 };
 
 template<typename T>

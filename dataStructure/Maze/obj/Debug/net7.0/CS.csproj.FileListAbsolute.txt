@@ -1,0 +1,14 @@
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\bin\Debug\net7.0\CS.exe
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\bin\Debug\net7.0\CS.deps.json
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\bin\Debug\net7.0\CS.runtimeconfig.json
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\bin\Debug\net7.0\CS.dll
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\bin\Debug\net7.0\CS.pdb
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\obj\Debug\net7.0\CS.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\obj\Debug\net7.0\CS.AssemblyInfoInputs.cache
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\obj\Debug\net7.0\CS.AssemblyInfo.cs
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\obj\Debug\net7.0\CS.csproj.CoreCompileInputs.cache
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\obj\Debug\net7.0\CS.dll
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\obj\Debug\net7.0\refint\CS.dll
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\obj\Debug\net7.0\CS.pdb
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\obj\Debug\net7.0\CS.genruntimeconfig.cache
+c:\Users\User\Documents\Git\langs\dataStructure\Maze\obj\Debug\net7.0\ref\CS.dll

@@ -1,5 +1,7 @@
 *.exe
 *.out
+.vs/
+.vscode/
 
 swap
 token

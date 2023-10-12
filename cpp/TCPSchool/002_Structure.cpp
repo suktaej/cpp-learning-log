@@ -15,7 +15,7 @@ struct book
     struct Name author;
     int price;
     int sale;
-} Book;
+};
 
 typedef struct
 {

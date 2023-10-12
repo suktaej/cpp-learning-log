@@ -12,7 +12,16 @@ struct book
 {
     string title;
     //string author;
-    Name author;
+    struct Name author;
+    int price;
+    int sale;
+} Book;
+
+typedef struct
+{
+    string title;
+    //string author;
+    struct Name author;
     int price;
     int sale;
 } Book;
@@ -22,8 +31,8 @@ int PtrCalc(const book*);
 
 int main(void)
 {
-    book webBook = {"HTML&CSS",{"Kim","NARA"},28000,10000};
-    book javaBook = {"Java",{"Lee","DARE"},10000,5000};
+    struct book webBook = {"HTML&CSS",{"Kim","NARA"},28000,10000};
+    Book javaBook = {"Java",{"Lee","DARE"},10000,5000};
     int salePrice;
 
     salePrice = Calc(webBook.price,webBook.sale);

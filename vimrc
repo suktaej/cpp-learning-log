@@ -9,12 +9,12 @@ Plug 'thaerkh/vim-indentguides'
 Plug 'preservim/nerdcommenter'
 Plug 'osyo-manga/vim-anzu'
 Plug 'majutsushi/tagbar'
-Plug 'blueyed/vim-diminactive' 
+Plug 'blueyed/vim-diminactive'
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'  
+Plug 'xolox/vim-easytags'
 Plug 'frazrepo/vim-rainbow'
 Plug 'tpope/vim-surround'
-Plug 'Raimondi/delimitMate'  
+Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
@@ -23,10 +23,11 @@ Plug 'pangloss/vim-simplefold'
 Plug 'psliwka/vim-smoothie'
 Plug 'tommcdo/vim-lion'
 Plug 'vim-scripts/VisIncr'
-"Syntax Check
+"Syntax
 Plug 'vim-syntastic/syntastic' 
 Plug 'SirVer/ultisnips'
-"Plug 'mattn/emmet-vim'
+Plug 'Valloric/YouCompleteMe'
+Plug 'mattn/emmet-vim'
 "Github
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -44,27 +45,32 @@ call plug#end()
 
 filetype indent on
 
-"Vundle Setting
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
- 
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
- 
+
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
 let g:syntastic_c_compiler_options = "-std=c11 -Wall -Wextra -Wpedantic"
 
-"Tag list
-let Tlist_Use_Right_Window = 1
-let Tlist_Auto_Open = 0
-let Tlist_Exit_OnlyWindow = 0
-let Tlist_Inc_Winwidth = 0
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+" Youcompleteme
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_key_invoke_completion = '<c-space>'
+
+" emmet-vim
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key='<C-T>'
+
+" delimitMate
+let delimitMate_expand_cr=1
 
 "Default vimrc setting
 if has("syntax")
@@ -83,11 +89,14 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+"set smarttab
+"set expandtab
 
 set hlsearch
 set ignorecase
 set smartcase
 set showmatch
+set cursorline
 
 set laststatus=2
 set statusline=%F\ %y%m%r\ %=Line:\ %l/%L\ [%p%%]\ Col:%c\ Buf:%n

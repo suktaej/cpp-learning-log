@@ -38,7 +38,7 @@ public class Program
 {
 	public static void main(String[] args)
 	{
-		ThreadWithClass thread1 = new ThreadWithClass();
+		//ThreadWithClass thread1 = new ThreadWithClass();
 		Thread thread2 = new Thread(new ThreadWithRunnable());
 		Thread thread3 = new Thread(new ThreadWithRunnable());
 

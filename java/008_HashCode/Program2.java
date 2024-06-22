@@ -1,5 +1,4 @@
 import java.util.HashSet;
-import java.util.*;
 
 class Animal{
     String species;

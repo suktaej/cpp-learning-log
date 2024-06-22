@@ -5,7 +5,7 @@ public class Program
 	public static void main(String[] args)
 	{
 		Stack<Integer> stk = new Stack<Integer>();
-		Deque<Integer> deq = new ArrayDeque<Integer>();
+		//Deque<Integer> deq = new ArrayDeque<Integer>();
 
 		stk.push(4);
 		stk.push(3);

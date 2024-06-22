@@ -1,7 +1,7 @@
 class Car
 {
-	private int currentSpeed;
-	private int accelerationTime;
+	//private int currentSpeed;
+	//private int accelerationTime;
 
 	public void accelerate(int speed, int second)
 	{

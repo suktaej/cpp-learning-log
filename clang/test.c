@@ -3,5 +3,5 @@
 int main(void)
 {
 	int a=10;
-	float b == 10;
+	printf("Hello C");
 }

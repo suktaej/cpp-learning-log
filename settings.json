@@ -1,0 +1,27 @@
+{
+    "editor.fontFamily": "D2Coding",
+    "security.workspace.trust.untrustedFiles": "open",
+    "git.openRepositoryInParentFolders": "never",
+    "editor.fontSize": 16,
+    "extensions.experimental.affinity": { "asvetliakov.vscode-neovim": 1 },
+    "workbench.colorTheme": "Jellybeans Theme",
+    "vim.easymotion": true,
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
+    "vim.leader": " ",
+    "vim.normalModeKeyBindings": [
+        { "before": [" ", "h"], "commands": ["cursorHome"] },
+        { "before": [" ", "l"], "commands": ["cursorEnd"] },
+        { "before": [" ", "j"], "commands": ["cursorPageDown"] },
+        { "before": [" ", "k"], "commands": ["cursorPageUp"] },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {"before": [" ", "d"], "after": ["\"","_","d"]}
+    ],
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-c>": false,
+        "<C-s>": false,
+        "<C-z>": false
+    },
+}

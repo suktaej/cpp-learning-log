@@ -4,7 +4,7 @@
     "git.openRepositoryInParentFolders": "never",
     "editor.fontSize": 16,
     "extensions.experimental.affinity": { "asvetliakov.vscode-neovim": 1 },
-    "workbench.colorTheme": "Jellybeans Theme",
+
     "vim.easymotion": true,
     "vim.highlightedyank.enable": true,
     "vim.hlsearch": true,

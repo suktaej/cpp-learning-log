@@ -105,6 +105,9 @@ set mouse=a
 
 set clipboard+=unnamedplus
 
+"leader key setting
+let mapleader = " "
+
 augroup highlight_yank
 	autocmd!
 	autocmd TextYankPost * silent! lua vim.highlight.on_yank()

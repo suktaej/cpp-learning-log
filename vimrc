@@ -2,40 +2,48 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
+"Edit
+Plug 'mg979/vim-visual-multi'	"Multicursor
+Plug 'tpope/vim-surround'		
+Plug 'preservim/nerdcommenter'	"Annotation
+Plug 'tommcdo/vim-lion'			"Line Alignment
+Plug 'chrisbra/NrrwRgn'			"파일 일부를 별도의 buffer에 저장
+Plug 'vim-scripts/VisIncr'		"Visual mode에서 숫자를 순차적으로 증가
+
+"Navigation
 Plug 'scrooloose/nerdtree'
+Plug 'easymotion/vim-easymotion'
+Plug 'majutsushi/tagbar'
+Plug 'osyo-manga/vim-anzu'
+
+"UI
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'thaerkh/vim-indentguides'
-Plug 'preservim/nerdcommenter'
-Plug 'osyo-manga/vim-anzu'
-Plug 'majutsushi/tagbar'
+Plug 'thaerkh/vim-indentguides'	"Indent line
 Plug 'blueyed/vim-diminactive'
 Plug 'frazrepo/vim-rainbow'
-Plug 'tpope/vim-surround'
-Plug 'majutsushi/tagbar'
-Plug 'easymotion/vim-easymotion'
-Plug 'mg979/vim-visual-multi'
-Plug 'chrisbra/NrrwRgn'
 Plug 'pangloss/vim-simplefold'
 Plug 'psliwka/vim-smoothie'
-Plug 'tommcdo/vim-lion'
-Plug 'vim-scripts/VisIncr'
+
 "Syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "coc.nvim이 정상설치 후
 ":CocInstall coc-pairs coc-git coc-snippets coc-json coc-pyright coc-clangd coc-html coc-css
 "언어팩, 자동괄호 완성기능 설치
-Plug 'SirVer/ultisnips'
-Plug 'mattn/emmet-vim'
+Plug 'SirVer/ultisnips'	"Snippet(자동완성)
+Plug 'mattn/emmet-vim'	"HTML/CSS 약어코드완성
+
 "Github
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+
 "Colorscheme
 Plug 'morhetz/gruvbox'
 Plug 'folke/tokyonight.nvim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'nanotech/jellybeans.vim'
+
 "ETC
 "Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'antoinemadec/vim-verilog-instance'

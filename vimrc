@@ -24,7 +24,6 @@ Plug 'psliwka/vim-smoothie'
 Plug 'tommcdo/vim-lion'
 Plug 'vim-scripts/VisIncr'
 "Syntax
-Plug 'vim-syntastic/syntastic' 
 Plug 'SirVer/ultisnips'
 Plug 'neoclide/coc.nvim'
 Plug 'mattn/emmet-vim'

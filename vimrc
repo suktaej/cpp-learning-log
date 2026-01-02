@@ -10,11 +10,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'osyo-manga/vim-anzu'
 Plug 'majutsushi/tagbar'
 Plug 'blueyed/vim-diminactive'
-"Plug 'xolox/vim-misc'
-"Plug 'xolox/vim-easytags'
 Plug 'frazrepo/vim-rainbow'
 Plug 'tpope/vim-surround'
-"Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'mg979/vim-visual-multi'
@@ -24,8 +21,11 @@ Plug 'psliwka/vim-smoothie'
 Plug 'tommcdo/vim-lion'
 Plug 'vim-scripts/VisIncr'
 "Syntax
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"coc.nvim이 정상설치 후
+":CocInstall coc-pairs coc-git coc-snippets coc-json coc-pyright coc-clangd coc-html coc-css
+"언어팩, 자동괄호 완성기능 설치
 Plug 'SirVer/ultisnips'
-Plug 'neoclide/coc.nvim'
 Plug 'mattn/emmet-vim'
 "Github
 Plug 'airblade/vim-gitgutter'

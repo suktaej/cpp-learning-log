@@ -64,10 +64,8 @@ function! CheckBackspace() abort
 
   let prev = getline('.')[col - 1]
 
-  " 공백이거나 기호면 Tab 허용 (completion 금지)
   return prev =~# '\s\|[;:,)\]}]'
 endfunction
-
 
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? coc#_select_confirm() :
@@ -83,6 +81,9 @@ inoremap <silent><expr> <S-Tab>
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 let g:user_emmet_leader_key='<C-T>'
+
+" Rainbow
+let g:rainbow_active = 1
 
 set number
 set relativenumber

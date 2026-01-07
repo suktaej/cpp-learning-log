@@ -58,8 +58,16 @@ filetype indent on
 " 자동완성 시 tab 선택
 function! CheckBackspace() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+  if col <= 0
+    return v:true
+  endif
+
+  let prev = getline('.')[col - 1]
+
+  " 공백이거나 기호면 Tab 허용 (completion 금지)
+  return prev =~# '\s\|[;:,)\]}]'
 endfunction
+
 
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? coc#_select_confirm() :

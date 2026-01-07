@@ -53,7 +53,24 @@ filetype indent on
 
 " coc.nvim
 " 자동완성 시 enter로 선택
-inoremap <expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
+" inoremap <expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
+
+" 자동완성 시 tab 선택
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+
+inoremap <silent><expr> <S-Tab>
+      \ pumvisible() ? "\<C-p>" : "\<C-h>"
+
 
 " emmet-vim
 let g:user_emmet_install_global = 0

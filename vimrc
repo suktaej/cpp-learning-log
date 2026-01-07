@@ -71,7 +71,6 @@ inoremap <silent><expr> <Tab>
 inoremap <silent><expr> <S-Tab>
       \ pumvisible() ? "\<C-p>" : "\<C-h>"
 
-
 " emmet-vim
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
@@ -102,14 +101,11 @@ inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
-inoremap <C-;> <Esc>
 
 nnoremap <leader>d "_d
-nnoremap x "_x
 
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
-vnoremap x "_x
 
 function! ToggleBoolUnderCursor()
     let word = expand('<cword>')

@@ -96,12 +96,38 @@ set mouse=a
 set clipboard+=unnamedplus
 set fileformats=unix,dos
 
-"leader key setting
+"keyMapping
 let mapleader = " "
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+inoremap <C-;> <Esc>
 
+nnoremap <leader>d "_d
+nnoremap x "_x
+
+vnoremap <leader>d "_d
+vnoremap <leader>p "_dP
+vnoremap x "_x
+
+function! ToggleBoolUnderCursor()
+    let word = expand('<cword>')
+
+    if word ==# 'true'
+        execute 'normal! "_ciwfalse'
+    elseif word ==# 'false'
+        execute 'normal! "_ciwtrue'
+    endif
+endfunction
+
+nnoremap <leader>c :call ToggleBoolUnderCursor()<CR>
+
+"highlight
 augroup highlight_yank
         autocmd!
         autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 augroup END
 
+"colorscheme
 colorscheme jellybeans

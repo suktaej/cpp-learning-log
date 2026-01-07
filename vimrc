@@ -104,6 +104,13 @@ set mouse=a
 set clipboard+=unnamedplus
 set fileformats=unix,dos
 
+"Colorscheme
+syntax on
+set background=dark
+let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_italic = 0
+colorscheme gruvbox
+
 "keyMapping
 let mapleader = " "
 inoremap <C-h> <Left>
@@ -133,6 +140,3 @@ augroup highlight_yank
         autocmd!
         autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 augroup END
-
-"colorscheme
-colorscheme jellybeans
